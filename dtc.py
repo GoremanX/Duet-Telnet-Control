@@ -19,6 +19,13 @@ import psutil
 import socket
 import time
 import platform
-import telnetlib
 import pexpect
 
+duet = sys.argv[1]
+
+print('Duet IP address is: ' +
+duet)
+
+telnet_child = pexpect.spawn('telnet ' + duet)
+telnet_child.expect('start-timelapse ')
+telnet_child.sendline('send brk')
